@@ -1,31 +1,29 @@
 "use client";
 
-import { CheckCircle, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 
-const pendingBooks = [
+const books = [
   {
     id: 1,
     title: "Sense and Sensibility",
     author: "Jane Austen",
     category: "Romance",
-    ownerName: "Clark Kent",
-    ownerEmail: "clark.k@example.com",
     deliveryFee: 50,
-    approvalStatus: "Pending Approval",
+    availabilityStatus: "Available",
+    approvalStatus: "Approved",
   },
   {
     id: 2,
-    title: "Deep Work",
-    author: "Cal Newport",
-    category: "Productivity",
-    ownerName: "Bruce Wayne",
-    ownerEmail: "bruce@example.com",
+    title: "Atomic Habits",
+    author: "James Clear",
+    category: "Self Help",
     deliveryFee: 60,
+    availabilityStatus: "Available",
     approvalStatus: "Pending Approval",
   },
 ];
 
-export default function BookApprovalPage() {
+export default function ManageInventoryPage() {
   return (
     <div className="min-h-screen bg-[#041032] text-slate-100 p-6 md:p-10 transition-colors duration-300">
       <section className="max-w-7xl mx-auto space-y-10">
@@ -33,10 +31,10 @@ export default function BookApprovalPage() {
         {/* Header Section */}
         <div className="relative pb-2 border-b border-slate-800">
           <h1 className="text-4xl font-extrabold tracking-tight text-white">
-            Book Approval Queue
+            Manage Inventory
           </h1>
           <p className="text-slate-400 mt-2 text-sm sm:text-base">
-            Review pending books and approve them for public browsing.
+            Manage your added books and approval status.
           </p>
         </div>
 
@@ -48,15 +46,15 @@ export default function BookApprovalPage() {
                 <tr>
                   <th className="py-4 px-6">Book</th>
                   <th className="py-4 px-6">Category</th>
-                  <th className="py-4 px-6">Librarian / Owner</th>
                   <th className="py-4 px-6">Fee</th>
-                  <th className="py-4 px-6">Status</th>
+                  <th className="py-4 px-6">Availability</th>
+                  <th className="py-4 px-6">Approval</th>
                   <th className="py-4 px-6 text-center">Actions</th>
                 </tr>
               </thead>
 
               <tbody className="divide-y divide-slate-800/60 text-slate-200">
-                {pendingBooks.map((book) => (
+                {books.map((book) => (
                   <tr 
                     key={book.id}
                     className="hover:bg-slate-800/20 transition-colors duration-200"
@@ -69,17 +67,24 @@ export default function BookApprovalPage() {
 
                     <td className="py-4 px-6 text-slate-300">{book.category}</td>
                     
-                    {/* Owner / Submitter Info */}
-                    <td className="py-4 px-6">
-                      <p className="font-medium text-slate-200">{book.ownerName}</p>
-                      <p className="text-xs text-slate-400 mt-0.5">{book.ownerEmail}</p>
-                    </td>
-                    
                     <td className="py-4 px-6 font-semibold text-slate-300">৳{book.deliveryFee}</td>
 
-                    {/* Pending Warning Status Badge */}
+                    {/* Availability Tag */}
                     <td className="py-4 px-6">
-                      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        {book.availabilityStatus}
+                      </span>
+                    </td>
+
+                    {/* Approval Tag */}
+                    <td className="py-4 px-6">
+                      <span
+                        className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ${
+                          book.approvalStatus === "Approved"
+                            ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                            : "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                        }`}
+                      >
                         {book.approvalStatus}
                       </span>
                     </td>
@@ -87,14 +92,14 @@ export default function BookApprovalPage() {
                     {/* Row Item Actions */}
                     <td className="py-4 px-6">
                       <div className="flex items-center justify-center gap-2.5">
-                        <button className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500 hover:text-white transition-all duration-200">
-                          <CheckCircle size={13} />
-                          Approve
+                        <button className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 hover:text-white transition-all duration-200">
+                          <Pencil size={13} />
+                          Edit
                         </button>
 
                         <button className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500 hover:text-white transition-all duration-200">
                           <Trash2 size={13} />
-                          Reject
+                          Delete
                         </button>
                       </div>
                     </td>
