@@ -141,10 +141,15 @@ export default function RegisterPage() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-950 px-4 py-20 text-white sm:px-6 lg:px-10">
+
       <div className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-blue-600/25 blur-[110px] sm:h-96 sm:w-96" />
+
       <div className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-indigo-600/25 blur-[120px] sm:h-96 sm:w-96" />
+
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.16),transparent_35%)]" />
+
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(15,23,42,0.2),rgba(15,23,42,1))]" />
+      
 
       <section className="relative z-10 mx-auto grid min-h-[calc(100vh-120px)] max-w-[1240px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] xl:gap-12">
         <div className="order-2 lg:order-1">
